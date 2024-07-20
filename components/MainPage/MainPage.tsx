@@ -3,15 +3,15 @@
 import { Welcome } from '../Welcome/Welcome';
 import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 import { Demo } from '@/components/Demo/demo';
-import { AppShell, Burger  } from '@mantine/core';
+import { AppShell, Burger, Group  } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { NumberInput } from '@mantine/core';
 import { useState } from 'react';
 import { Button, Switch } from '@mantine/core';
-import { IconDownload } from '@tabler/icons-react';
 import { HeartBeatChart } from '../HeartBeatChart/HeartBeatChart';
 import { SideBardContent } from '../SideBarContent/SideBarContent';
-
+import {IconHeart } from '@tabler/icons-react';
+import { Text } from '@mantine/core';
 
 
 export function MainPage() {
@@ -31,11 +31,10 @@ export function MainPage() {
       padding="md"
     >
       <AppShell.Header>
-        <Burger
-          hiddenFrom="sm"
-          size="sm"
-        />
-        <h1>Heart Watch</h1>
+        <Group>
+        <IconHeart size={30} color='red' ></IconHeart>
+        <Text inherit variant="gradient" component="span" gradient={{ from: 'blue', to: 'red'}} size='xl' fw={1000}>Heart Watch</Text>
+        </Group>
       </AppShell.Header>
 
       <AppShell.Navbar p="md">

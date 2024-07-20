@@ -2,7 +2,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { NumberInput } from '@mantine/core';
 import { useState } from 'react';
 import { Button, Switch } from '@mantine/core';
-import { IconDownload } from '@tabler/icons-react';
+import { IconDownload, IconActivityHeartbeat } from '@tabler/icons-react';
 
 
 
