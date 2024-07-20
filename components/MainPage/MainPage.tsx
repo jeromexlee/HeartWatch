@@ -9,6 +9,7 @@ import { NumberInput } from '@mantine/core';
 import { useState } from 'react';
 import { Button, Switch } from '@mantine/core';
 import { IconDownload } from '@tabler/icons-react';
+import { HeartBeatChart } from '../HeartBeatChart/HeartBeatChart';
 import { SideBardContent } from '../SideBarContent/SideBarContent';
 
 
@@ -43,8 +44,7 @@ export function MainPage() {
 
       <AppShell.Main>
         <Welcome />
-        <ColorSchemeToggle />
-        <Demo />
+        <HeartBeatChart />
       </AppShell.Main>
     </AppShell>
   );
