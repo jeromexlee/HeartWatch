@@ -36,9 +36,9 @@ export function MainPage() {
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
-        <NumberInput label="Age" placeholder="Please enter your age" hideControls />
-        <NumberInput label="Weight" placeholder="Please enter your weight" hideControls />
-        <NumberInput label="Height" placeholder="Please enter your height" hideControls />
+        <NumberInput label="Age" placeholder="Please enter your age" hideControls value={ageValue} onChange={setAgeValue}/>
+        <NumberInput label="Weight" placeholder="Please enter your weight" hideControls value={weightValue} onChange={setWeightValue}/>
+        <NumberInput label="Height" placeholder="Please enter your height" hideControls value={heightValue} onChange={setHeightValue}/>
       </AppShell.Navbar>
 
       <AppShell.Main>
