@@ -13,6 +13,7 @@ export function SideBardContent() {
   const [heightValue, setHeightValue] = useState<string | number>('');
   const [isLiveData, { toggle }] = useDisclosure();
 
+
   return (
     <>
         <NumberInput label="Age" placeholder="Please enter your age" hideControls value={ageValue} onChange={setAgeValue}/>
