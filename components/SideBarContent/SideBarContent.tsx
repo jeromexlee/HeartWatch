@@ -17,7 +17,7 @@ export function SideBardContent() {
   const handleDownload = async () => {
     try {
       // Replace this with your actual API endpoint
-      const response = await axios.get('http://100.28.74.221:5000/read', {
+      const response = await axios.get('http://100.28.74.221:5000/read_undismissable_messages', {
         params: {
           age: ageValue,
           weight: weightValue,
