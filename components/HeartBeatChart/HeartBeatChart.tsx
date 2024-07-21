@@ -9,6 +9,7 @@ export function HeartBeatChart() {
     return (
         <>
             <DatePickerInput
+                clearable
                 type="range"
                 label="Pick dates range"
                 placeholder="Pick dates range"
