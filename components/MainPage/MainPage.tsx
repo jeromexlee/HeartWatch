@@ -1,17 +1,25 @@
 'use client';
 
+import React, { useContext } from 'react';
 import { Welcome } from '../Welcome/Welcome';
-import { AppShell, Group  } from '@mantine/core';
+import { AppShell, Group, Text, Alert as MantineAlert, Flex } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-
 import { HeartBeatChart } from '../HeartBeatChart/HeartBeatChart';
 import { SideBardContent } from '../SideBarContent/SideBarContent';
-import {IconHeart } from '@tabler/icons-react';
-import { Text } from '@mantine/core';
-
+import { IconHeart } from '@tabler/icons-react';
+import { HeartBeatContext } from './HeartBeatContext';
 
 export function MainPage() {
   const [opened] = useDisclosure();
+  const context = useContext(HeartBeatContext);
+
+  if (!context) {
+    return <div>Loading...</div>; // Render loading state if context is not available
+  }
+
+  const { alerts, dismissAlert } = context;
+
+  const icon = <IconHeart />;
 
   return (
     <AppShell
@@ -24,8 +32,8 @@ export function MainPage() {
     >
       <AppShell.Header>
         <Group>
-        <IconHeart size={30} color='red' ></IconHeart>
-        <Text inherit variant="gradient" component="span" gradient={{ from: 'blue', to: 'red'}} size='xl' fw={1000}>Heart Watch</Text>
+          <IconHeart size={30} color='red' />
+          <Text inherit variant="gradient" component="span" gradient={{ from: 'blue', to: 'red' }} size='xl' fw={1000}>Heart Watch</Text>
         </Group>
       </AppShell.Header>
 
@@ -35,6 +43,13 @@ export function MainPage() {
 
       <AppShell.Main>
         <Welcome />
+        <Flex gap="lg" direction="column">
+            {alerts && alerts.length > 0 && alerts.map(alert => (
+            <MantineAlert key={alert.id} title="Alert" color="red" icon={icon} withCloseButton onClose={() => dismissAlert(alert.id)}> 
+                {alert.message}
+            </MantineAlert>
+            ))}
+        </Flex>
         <HeartBeatChart />
       </AppShell.Main>
     </AppShell>
