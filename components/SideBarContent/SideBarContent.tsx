@@ -14,32 +14,41 @@ export function SideBardContent() {
   const [heightValue, setHeightValue] = useState<string | number>('');
   const [isLiveData, { toggle }] = useDisclosure();
 
+    const getFormattedTime = () => {
+        const now = new Date();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const year = now.getFullYear();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        return `${month}/${day}/${year}_${hours}${minutes}${seconds}`;
+    };
+
   const handleDownload = async () => {
     try {
-      // Replace this with your actual API endpoint
-      const response = await axios.get('http://100.28.74.221:5000/read_undismissable_messages', {
+      const response = await axios.get('https://pwm2udedib.execute-api.us-east-1.amazonaws.com/prod/downloadReport', {
         params: {
-          age: ageValue,
-          weight: weightValue,
-          height: heightValue,
-          liveData: isLiveData,
-        }
+            report_name: "Alice_Brown.csv",
+        },
+        responseType: 'blob' // Important for file downloads
       });
 
-    //   if (response.data && response.data.url) {
-    //     const link = document.createElement('a');
-    //     link.href = response.data.url;
-    //     link.download = 'file.pdf'; // Adjust the file name and extension as needed
-    //     document.body.appendChild(link);
-    //     link.click();
-    //     document.body.removeChild(link);
-    //   } else {
-    //     console.error('URL not found in response payload');
-    //   }
-      console.log("XCXC")
-      console.log(response)
+      
+
+      if (response.status === 200) {
+        const formattedTime = getFormattedTime();
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `Health_data_${formattedTime}.csv`); // Adjust the file name and extension as needed
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        console.error('Error: Unable to download file');
+      }
     } catch (error) {
-        console.log("XCXC: ERROR")
       console.error('Error downloading file:', error);
     }
   };
