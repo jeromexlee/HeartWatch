@@ -44,7 +44,7 @@ export const HeartBeatProvider: React.FC<{ children: ReactNode }> = ({ children 
   const [isLiveData, setIsLiveData] = useState<boolean>(false);
 
   const fetchHeartBeatData = (start: number, end: number) => {
-    axios.get<{ hr_data: { time: number; data: number }[] }>(`http://100.28.74.221:8002/api/v1/hbs/report?name=test&begin=${start}&end=${end}`)
+    axios.get<{ hr_data: { time: number; data: number }[] }>(`http://100.28.74.221:8002/api/v1/hbs/report?name=Alice&begin=${start}&end=${end}`)
       .then(response => {
         console.log(response);
         const formattedData = response.data.hr_data.map(d => ({
