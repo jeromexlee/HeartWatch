@@ -7,7 +7,7 @@ interface HeartBeatData {
 }
 
 interface Alert {
-  id: string;
+  msg_id: string;
   content: string;
 }
 
@@ -81,11 +81,6 @@ export const HeartBeatProvider: React.FC<{ children: ReactNode }> = ({ children 
           setAlerts(response.data.slice(0, 3)); // Update to display the latest 3 alerts
         })
         .catch(error => {
-          setAlerts([
-            { id: '1', content: 'Mock Alert 1' },
-            { id: '2', content: 'Mock Alert 2' },
-            { id: '3', content: 'Mock Alert 3' },
-          ]);
           console.error('Error fetching alerts:', error);
         });
     }, 10000); // Mock fetch alerts every 10 seconds
@@ -103,7 +98,7 @@ export const HeartBeatProvider: React.FC<{ children: ReactNode }> = ({ children 
           'Content-Type': 'application/json',
         }
       });
-      setAlerts(prevAlerts => prevAlerts.filter(alert => alert.id !== id));
+      setAlerts(prevAlerts => prevAlerts.filter(alert => alert.msg_id !== id));
     } catch (error) {
       console.error('Error dismissing alert:', error);
     }
