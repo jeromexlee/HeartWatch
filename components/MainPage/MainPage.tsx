@@ -45,8 +45,8 @@ export function MainPage() {
         <Welcome />
         <Flex gap="lg" direction="column">
             {alerts && alerts.length > 0 && alerts.map(alert => (
-            <MantineAlert key={alert.id} title="Alert" color="red" icon={icon} withCloseButton onClose={() => dismissAlert(alert.id)}> 
-                {alert.message}
+            <MantineAlert key={alert.msg_id} title="Alert" color="red" icon={icon} withCloseButton onClose={() => dismissAlert(alert.msg_id)}> 
+                {alert.content}
             </MantineAlert>
             ))}
         </Flex>
